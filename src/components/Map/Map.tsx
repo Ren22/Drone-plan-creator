@@ -1,25 +1,34 @@
 import React, { useEffect, useState } from 'react';
-import {
-  Map as MapGL,
+import InteractiveMap, {
   NavigationControl,
   FullscreenControl,
   ScaleControl,
   GeolocateControl,
+  MapLayerMouseEvent,
+  Marker,
 } from 'react-map-gl';
 import { Button } from '../Button';
+
+interface LngLat {
+  longitude: number;
+  latitude: number;
+}
 
 const TOKEN =
   'pk.eyJ1IjoiZ3JhbmRtaXgiLCJhIjoiY2w3aTl1ZjNrMG05cjNvcGJ0emw1bm5zeiJ9.g-kvvfvB5oQvA6chdO3iEA';
 
 const Map = () => {
-  const [isMarkerAddingMode, setIsMarkerAddingMode] = useState(false);
-  const markersCoords = [];
+  const [isMarkerAddingMode, setIsMarkerAddingMode] = useState(true);
+  const [markers, setMarkersCoords] = useState<LngLat[]>([]);
 
-  const onClick = (e: any) => {
+  const handleClick = (e: MapLayerMouseEvent) => {
     if (isMarkerAddingMode) {
-      console.log('bla');
+      const lng = e.lngLat.lng;
+      const lat = e.lngLat.lat;
+      setMarkersCoords((markers) => [...markers, { longitude: lng, latitude: lat }]);
+    } else {
+      console.log('No action');
     }
-    console.log(e);
   };
 
   useEffect(() => {}, [isMarkerAddingMode]);
@@ -30,8 +39,8 @@ const Map = () => {
 
   return (
     <>
-      <MapGL
-        onClick={onClick}
+      <InteractiveMap
+        onClick={handleClick}
         initialViewState={{
           latitude: 52.52,
           longitude: 13.4,
@@ -47,7 +56,10 @@ const Map = () => {
         <FullscreenControl position="top-left" />
         <NavigationControl position="top-left" />
         <ScaleControl />
-      </MapGL>
+        {markers.map((m, i) => (
+          <Marker {...m} key={i} />
+        ))}
+      </InteractiveMap>
       <Button onClick={enableAddMarkerMode}>{`${
         isMarkerAddingMode ? 'Stop' : 'Start'
       } creating plan`}</Button>
