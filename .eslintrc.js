@@ -12,5 +12,22 @@ module.exports = {
   plugins: ['react'],
   rules: {
     'react/react-in-jsx-scope': 'off',
+    '@typescript-eslint/semi': 'off',
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "comma-dangle": "off",
+    "@typescript-eslint/space-before-function-paren": "off",
+    "@typescript-eslint/member-delimiter-style": [
+      "warn",
+      {
+          "multiline": {
+              "delimiter": "semi",
+              "requireLast": true
+          },
+          "singleline": {
+              "delimiter": "semi",
+              "requireLast": false
+          }
+      }
+    ]
   },
 };
