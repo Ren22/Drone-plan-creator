@@ -29,5 +29,6 @@ module.exports = {
         },
       },
     ],
+    '@typescript-eslint/no-floating-promises': "off"
   },
 };

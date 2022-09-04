@@ -5,6 +5,14 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import { store } from './store';
+import { debounce } from 'debounce';
+import { saveState } from './browser-storage';
+
+store.subscribe(
+  debounce(() => {
+    saveState(store.getState());
+  }, 300),
+);
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
