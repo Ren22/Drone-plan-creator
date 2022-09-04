@@ -4,6 +4,9 @@ import { Icon } from 'leaflet';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { addCurrentCoords, selectCurrentCoords } from '../../features/currentCoords/currentCoords';
 
+const ICON_URL =
+  'https://upload.wikimedia.org/wikipedia/commons/0/0e/Basic_red_dot.png?20181031002712';
+
 const LocationMarkers = () => {
   const dispatch = useAppDispatch();
   const currentCoords = useAppSelector(selectCurrentCoords);
@@ -27,7 +30,7 @@ const LocationMarkers = () => {
 };
 
 export const customMarkerUserPos = new Icon({
-  iconUrl: 'https://upload.wikimedia.org/wikipedia/commons/0/0e/Basic_red_dot.png?20181031002712',
+  iconUrl: ICON_URL,
   iconSize: [10, 10],
   iconAnchor: [5, 5],
   popupAnchor: [2, -40],

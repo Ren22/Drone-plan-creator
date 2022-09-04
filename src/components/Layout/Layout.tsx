@@ -16,7 +16,7 @@ const Layout = () => {
         <Map />
         <div>
           <Button onClick={enableAddMarkerMode}>
-            {`${isMarkerAddingMode ? 'Stop' : 'Start'} creating plan`}
+            {`${isMarkerAddingMode ? 'Stop' : 'Start'} plan creation`}
           </Button>
           <PlanSaver />
           <PlanList />

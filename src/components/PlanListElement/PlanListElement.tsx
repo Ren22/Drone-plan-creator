@@ -16,8 +16,8 @@ const PlanListElement = ({ plan }: Props) => {
       <div>
         <p>Name: {String(plan.name)}</p>
       </div>
-      <Button onClick={deletePlanFromList}>Remove the plan</Button>
-      <Button onClick={restorePlanFromList}>Restore plan</Button>
+      <Button onClick={deletePlanFromList}>Remove {String(plan.name)}</Button>
+      <Button onClick={restorePlanFromList}>Restore {String(plan.name)}</Button>
     </>
   );
 };
