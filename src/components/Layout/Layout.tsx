@@ -3,17 +3,27 @@ import { PlanList } from '../PlanList';
 import { PlanSaver } from '../PlanSaver';
 import { Map } from '../Map';
 import './Layout.css';
+import { Button } from '../Button';
 
-const Layout = () => (
-  <>
-    <div className="content">
-      <Map />
-      <div>
-        <PlanSaver />
-        <PlanList />
+const Layout = () => {
+  const [isMarkerAddingMode, setIsMarkerAddingMode] = useState(false);
+  const enableAddMarkerMode = () => {
+    setIsMarkerAddingMode(!isMarkerAddingMode);
+  };
+  return (
+    <>
+      <div className="content">
+        <Map />
+        <div>
+          <Button onClick={enableAddMarkerMode}>
+            {`${isMarkerAddingMode ? 'Stop' : 'Start'} creating plan`}
+          </Button>
+          <PlanSaver />
+          <PlanList />
+        </div>
       </div>
-    </div>
-  </>
-);
+    </>
+  );
+};
 
 export default Layout;

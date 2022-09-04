@@ -1,16 +1,21 @@
 import { FormEventHandler, useState } from 'react';
+import { createPlan } from '../../features/plans/planSlice';
+import { useAppDispatch } from '../../hooks';
 import { Button } from '../Button';
 
 interface State {
   name: string;
+  coords: Array<[]>;
 }
 
 const initialState: State = {
   name: '',
+  coords: [[]],
 };
 
 const PlanSaver = () => {
   const [state, setState] = useState<State>(initialState);
+  const dispatch = useAppDispatch();
   const nameChange = (e: React.ChangeEvent) => {
     setState({
       ...state,
@@ -19,7 +24,12 @@ const PlanSaver = () => {
   };
 
   const submit: FormEventHandler = (e) => {
-    console.log('Not implemented');
+    e.preventDefault();
+    dispatch(
+      createPlan({
+        ...state,
+      }),
+    );
   };
 
   return (
@@ -33,7 +43,7 @@ const PlanSaver = () => {
           placeholder="Plan name"
           onChange={nameChange}
         ></input>
-        <Button type="submit"></Button>
+        <Button type="submit">Save</Button>
       </form>
     </>
   );
