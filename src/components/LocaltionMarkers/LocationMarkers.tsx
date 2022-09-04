@@ -1,26 +1,28 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useMapEvents, Marker, FeatureGroup, Polyline } from 'react-leaflet';
-import L, { Icon } from 'leaflet';
+import { Icon } from 'leaflet';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { addCurrentCoords, selectCurrentCoords } from '../../features/currentCoords/currentCoords';
 
 const LocationMarkers = () => {
-  const [markers, setMarkers] = useState<L.LatLng[]>([]);
+  const dispatch = useAppDispatch();
+  const currentCoords = useAppSelector(selectCurrentCoords);
 
   useMapEvents({
     click(e) {
-      markers.push(e.latlng);
-      setMarkers((prevValue) => [...prevValue, e.latlng]);
+      dispatch(addCurrentCoords({ ...e.latlng }));
     },
   });
 
   return (
-    <React.Fragment>
+    <>
       <FeatureGroup>
-        {markers.map((marker, i) => (
+        {currentCoords.map((marker, i) => (
           <Marker position={marker} key={i} icon={customMarkerUserPos}></Marker>
         ))}
-        <Polyline positions={markers} color="red" />
+        <Polyline positions={currentCoords} color="red" />
       </FeatureGroup>
-    </React.Fragment>
+    </>
   );
 };
 

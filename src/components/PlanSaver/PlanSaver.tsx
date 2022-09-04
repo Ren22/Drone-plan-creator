@@ -1,20 +1,22 @@
-import { FormEventHandler, useState } from 'react';
+import { FormEventHandler, useEffect, useState } from 'react';
+import { Coords, selectCurrentCoords } from '../../features/currentCoords/currentCoords';
 import { createPlan } from '../../features/plans/planSlice';
-import { useAppDispatch } from '../../hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 import { Button } from '../Button';
 
 interface State {
   name: string;
-  coords: Array<[]>;
+  coords: Coords[];
 }
 
 const initialState: State = {
   name: '',
-  coords: [[]],
+  coords: [],
 };
 
 const PlanSaver = () => {
   const [state, setState] = useState<State>(initialState);
+  const currentCoords = useAppSelector(selectCurrentCoords);
   const dispatch = useAppDispatch();
   const nameChange = (e: React.ChangeEvent) => {
     setState({
@@ -22,6 +24,13 @@ const PlanSaver = () => {
       name: (e.target as HTMLInputElement).value,
     });
   };
+
+  useEffect(() => {
+    setState({
+      ...state,
+      coords: currentCoords,
+    });
+  }, [currentCoords]);
 
   const submit: FormEventHandler = (e) => {
     e.preventDefault();
@@ -35,7 +44,7 @@ const PlanSaver = () => {
   return (
     <>
       <form onSubmit={submit}>
-        <label htmlFor="plan-saver">Save a plan</label>
+        <label htmlFor="plan-saver">Plan name:</label>
         <input
           id="plan-saver"
           type="text"
@@ -43,7 +52,7 @@ const PlanSaver = () => {
           placeholder="Plan name"
           onChange={nameChange}
         ></input>
-        <Button type="submit">Save</Button>
+        <Button type="submit">Save plan</Button>
       </form>
     </>
   );

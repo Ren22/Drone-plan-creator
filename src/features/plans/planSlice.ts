@@ -1,10 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../../store';
+import { Coords } from '../currentCoords/currentCoords';
 
 export interface Plan {
   id?: number;
   name: string;
-  coords: Array<[]>;
+  coords: Coords[];
 }
 
 export interface PlansState {
@@ -29,7 +30,7 @@ export const plansSlice = createSlice({
           state.plans.splice(idx, 1);
         }
       });
-    },
+    }
   },
 });
 

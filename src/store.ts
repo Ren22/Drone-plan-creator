@@ -2,9 +2,11 @@ import { configureStore } from '@reduxjs/toolkit';
 import { combineReducers } from 'redux';
 import { loadState } from './browser-storage';
 import plansReducer from './features/plans/planSlice';
+import currentCoordsReduced from './features/currentCoords/currentCoords';
 
 const reducers = combineReducers({
   plans: plansReducer,
+  currentCoords: currentCoordsReduced
 });
 
 export const store = configureStore({
