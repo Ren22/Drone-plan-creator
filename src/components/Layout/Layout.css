@@ -4,3 +4,8 @@
   align-items: stretch;
   height: 100%;
 }
+
+.sidebar {
+  overflow: scroll;
+  width: 30%;
+}

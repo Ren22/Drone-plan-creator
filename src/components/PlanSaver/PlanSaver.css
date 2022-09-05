@@ -1,0 +1,20 @@
+.planSaver__content {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+}
+
+.planSaver__button {
+  margin-top: 1rem;
+  background-color: #066acd;
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  height: 2rem;
+  border-radius: 5px;
+}
+
+.planSaver__button:hover {
+  opacity: 0.9;
+}

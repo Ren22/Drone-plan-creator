@@ -3,7 +3,8 @@ import { Coords, selectCurrentCoords } from '../../features/currentCoords/curren
 import { createPlan } from '../../features/plans/planSlice';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { Button } from '../Button';
-
+import bemCn from 'bem-cn-lite';
+import './PlanSaver.css';
 interface State {
   name: string;
   coords: Coords[];
@@ -41,18 +42,24 @@ const PlanSaver = () => {
     );
   };
 
+  const block = bemCn('planSaver');
+
   return (
     <>
-      <form onSubmit={submit}>
-        <label htmlFor="plan-saver">Plan name:</label>
-        <input
-          id="plan-saver"
-          type="text"
-          required={true}
-          placeholder="Plan name"
-          onChange={nameChange}
-        ></input>
-        <Button type="submit">Save plan</Button>
+      <form className={block()} onSubmit={submit}>
+        <div className={block('content')}>
+          <label htmlFor="plan-saver">Plan name:</label>
+          <input
+            id="plan-saver"
+            type="text"
+            required={true}
+            placeholder="Enter you plan name"
+            onChange={nameChange}
+          ></input>
+          <Button className={block('button')} type="submit">
+            Save plan
+          </Button>
+        </div>
       </form>
     </>
   );
