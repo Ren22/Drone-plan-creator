@@ -1,6 +1,18 @@
-# Getting Started with Create React App
+# Project details
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This small CRA project implements a web app to draw drone flight plan. A user can add markers on the map and store them for later retrieval. Maps are stored in localstorage with Redux and can be removed from the list.
+
+![Example](https://i.ibb.co/54Qg16S/example-leaflet.png)
+
+# Deployed version
+
+# Tech stack
+
+- Create react app
+- Typescript
+- [React leaflet](https://react-leaflet.js.org/)
+- CSS
+- Redux
 
 ## Available Scripts
 
@@ -38,9 +50,3 @@ If you aren’t satisfied with the build tool and configuration choices, you can
 Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
