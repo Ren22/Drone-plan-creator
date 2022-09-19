@@ -4,10 +4,6 @@ This small CRA project implements a web app to draw drone flight plan. A user ca
 
 ![Example](https://i.ibb.co/54Qg16S/example-leaflet.png)
 
-# Deployed version
-
-Deployed version can be found @[Heroku](https://secure-wave-39682.herokuapp.com/)
-
 # Tech stack
 
 - Create react app
